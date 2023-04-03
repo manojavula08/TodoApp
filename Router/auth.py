@@ -20,7 +20,7 @@ templates = Jinja2Templates(directory="templates")
 
 SECRET_KEY = 'ba6d8bd0f10fde517a01fd8e251f637e'
 ALGORITHM = 'HS256'
-ACCESS_EXPIRE_TOKEN_MINUTES = 60
+ACCESS_EXPIRE_TOKEN_MINUTES = 100
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -84,9 +84,10 @@ async def login_page(request: Request, email: str = Form(...), password: str = F
 @router.get("/logout", response_class=HTMLResponse)
 async def logout(request: Request):
     msg = "Logout Successful"
-    response = templates.TemplateResponse("login.html", {"request": request, "msg": msg})
+    # response = templates.TemplateResponse("login.html", {"request": request, "msg": msg})
+    response = RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
     response.delete_cookie(key="access_token")
-    return response and RedirectResponse(url="/auth/login")
+    return response
 @router.get("/register", response_class=HTMLResponse)
 async def register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
