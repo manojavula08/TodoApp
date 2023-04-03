@@ -3,8 +3,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 #DATABASE_URL = "sqlite:///./todos.db"
-# DATABASE_URL = "postgresql://postgres:asdasd@localhost/TodoApplicationDatabase"
-DATABASE_URL = "postgresql://lcdkvbrd:keMkJaMl-EzizPf6tYNWAJ87SHmApURV@satao.db.elephantsql.com/lcdkvbrd"
 
 # write your database here............ and connect.
 
